@@ -12,7 +12,7 @@ import { Product, CartItem, User, BlogPost } from './types';
 
 // --- Animation Helper ---
 
-const RevealOnScroll = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
+const RevealOnScroll = ({ children, className = "" }: { children?: React.ReactNode, className?: string }) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -372,7 +372,7 @@ const HomePage = () => {
   // Enter the exact IDs of the 3 products you want to show on the home page.
   // Look at constants.ts for available IDs.
   // -------------------------------------------------------------------------
-  const trendingProductIds = ['p21', 'p29', 'p47']; 
+  const trendingProductIds = ['p1', 'p3', 'p6']; 
 
   const trendingProducts = PRODUCTS.filter(p => trendingProductIds.includes(p.id));
 
@@ -465,7 +465,7 @@ const HomePage = () => {
             <h2 className="text-3xl font-bold mb-12 text-center text-primary">Featured Collections</h2>
             <div className="grid md:grid-cols-2 gap-6">
               <div onClick={() => navigate('/products')} className="group relative h-72 md:h-96 rounded-2xl overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl transition-all">
-                <img src="image1.png" alt="Frames" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src="./image1.png" alt="Frames" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8 md:p-12">
                   <span className="bg-secondary text-white text-xs font-bold px-3 py-1 rounded w-fit mb-3">Best Sellers</span>
                   <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">Premium Acetate Frames</h3>
@@ -473,7 +473,7 @@ const HomePage = () => {
                 </div>
               </div>
               <div onClick={() => navigate('/products')} className="group relative h-72 md:h-96 rounded-2xl overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl transition-all">
-                <img src="image2.avif" alt="Goggles" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src="./image2.avif" alt="Goggles" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8 md:p-12">
                   <span className="bg-accent text-primary text-xs font-bold px-3 py-1 rounded w-fit mb-3">New Arrivals</span>
                   <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">Polarized Goggles</h3>
@@ -625,7 +625,7 @@ const AboutPage = () => {
           <h2 className="text-3xl font-bold text-center mb-12">Why Retailers Choose Us</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { icon: <Users size={32} />, title: "Network", desc: "Trusted by 10+ Optical Shops" },
+              { icon: <Users size={32} />, title: "Network", desc: "Trusted by 500+ Optical Shops" },
               { icon: <Award size={32} />, title: "Quality", desc: "QC Checked Products Only" },
               { icon: <HelpCircle size={32} />, title: "Support", desc: "Dedicated Account Managers" },
             ].map((item, i) => (
@@ -692,11 +692,11 @@ const ProductsPage = () => {
   // Define your ranges here. Use 'Infinity' for the last range's max value.
   // -------------------------------------------------------------------------
   const PRICE_RANGES = [
-    { id: 'r1', label: 'Under ₹100', min: 0, max: 101 },
-    { id: 'r2', label: '₹100 - ₹200', min: 100, max: 201 },
-    { id: 'r3', label: '₹200 - ₹300', min: 200, max: 301 },
-    { id: 'r4', label: '₹300 - ₹400', min: 300, max: 401 },
-    { id: 'r5', label: 'Above ₹400', min: 1000, max: Infinity },
+    { id: 'r1', label: 'Under ₹400', min: 0, max: 399 },
+    { id: 'r2', label: '₹400 - ₹599', min: 400, max: 599 },
+    { id: 'r3', label: '₹600 - ₹799', min: 600, max: 799 },
+    { id: 'r4', label: '₹800 - ₹999', min: 800, max: 999 },
+    { id: 'r5', label: 'Above ₹1000', min: 1000, max: Infinity },
   ];
 
   useEffect(() => {

@@ -1,11 +1,22 @@
 import { GoogleGenAI } from "@google/genai";
 import { PRODUCTS, COMPANY_EMAIL, COMPANY_PHONE } from '../constants';
 
-const apiKey = process.env.REACT_APP_API_KEY || ''; // Ensure this is available in your env
+// Helper to safely get API key (handles browser/server env differences)
+const getApiKey = (): string => {
+  // Try standard process.env (Node) and REACT_APP_ prefix (Create React App)
+  // Google keys often get revoked if pushed to GitHub, so we check multiple sources.
+  return process.env.API_KEY || process.env.REACT_APP_API_KEY || '';
+};
+
+const apiKey = getApiKey();
 const ai = new GoogleGenAI({ apiKey });
 
 export const getGeminiResponse = async (userQuery: string, history: any[] = []) => {
-  if (!apiKey) return "Apna Assistant: API Key missing. Please configure.";
+  // Check if key is missing or empty
+  if (!apiKey) {
+    console.error("API Key is missing. Ensure REACT_APP_API_KEY is in your .env file.");
+    return "Apna Assistant: API Key missing. Please check your .env configuration.";
+  }
 
   const productContext = PRODUCTS.map(p => 
     `${p.name} (${p.category}): ₹${p.price}, Min Qty: ${p.minQty}. Features: ${p.features.join(', ')}.`
@@ -19,7 +30,7 @@ export const getGeminiResponse = async (userQuery: string, history: any[] = []) 
     - We are India's leading B2B optical marketplace.
     - Contact: ${COMPANY_PHONE}, ${COMPANY_EMAIL}.
     - We sell bulk eyewear frames and goggles.
-    - We accept COD only.
+    - We accept UPI and COD.
     
     Key Policies (Strict):
     - Delivery: Super fast, 1-2 business days across Delhi.
@@ -27,7 +38,7 @@ export const getGeminiResponse = async (userQuery: string, history: any[] = []) 
     
     Current Offers:
     - Dynamic pricing: Get up to 10% off automatically on bulk quantities.
-    - And if user click the whatsapp button and text community then user added to community and understand  new coupen code for discount
+    - a coupen code by 10 % discount descreses you can click whatsapp button and text community after you add the commnity then the coupen you will have
 
     Product Catalog Context:
     ${productContext}
@@ -53,8 +64,15 @@ export const getGeminiResponse = async (userQuery: string, history: any[] = []) 
       },
     });
     return response.text;
-  } catch (error) {
-    console.error("Gemini Error:", error);
-    return "I'm having trouble connecting right now. Please try again later.";
+  } catch (error: any) {
+    console.error("Gemini API Error:", error);
+    
+    // Check for specific error indicating key revocation or permission issues
+    const errorMessage = error.message || error.toString();
+    if (errorMessage.includes('403') || errorMessage.includes('API key') || errorMessage.includes('PERMISSION_DENIED')) {
+      return "Apna Assistant: My connection is blocked. The API Key is likely invalid or revoked by Google (Github push detected). Please generate a new key and update .env with REACT_APP_API_KEY.";
+    }
+    
+    return "I'm having trouble connecting right now. Please check your internet connection and try again.";
   }
 };

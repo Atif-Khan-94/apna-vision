@@ -13,7 +13,7 @@ export const PRODUCTS: Product[] = [
     category: 'Goggles',
     price: 120,
     minQty: 12,
-    description: 'Premium London Vision Sunglasses Best For high Budget',
+    description: 'Premium London Vision Sunglasses Best For high Budget and clarification',
     image: '/product/sun1.jpg',
     features: ['Metal', 'Stylish', 'Unisex'],
     inStock: true,
