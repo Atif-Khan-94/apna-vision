@@ -235,8 +235,7 @@ const Footer = () => (
     </div>
   </footer>
 );
-
-const ModalEnquiry = () => {
+  const ModalEnquiry = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const { addEnquiry, user } = useStore();
@@ -278,7 +277,8 @@ const ModalEnquiry = () => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-start sm:items-center justify-center bg-black/60 backdrop-blur-sm pt-20 sm:pt-4 px-4 pb-4 animate-fade-in">
+    // FIX: Changed z-index from z-[60] to z-[200] so it sits ABOVE the navbar (z-[100])
+    <div className="fixed inset-0 z-[200] flex items-start sm:items-center justify-center bg-black/60 backdrop-blur-sm pt-20 sm:pt-4 px-4 pb-4 animate-fade-in">
       <div className="bg-white rounded-xl shadow-2xl p-6 w-full max-w-md relative border border-gray-200">
         <button onClick={() => setIsOpen(false)} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
           <X size={20} />
@@ -307,7 +307,6 @@ const ModalEnquiry = () => {
     </div>
   );
 };
-
 // FIX: WhatsApp Button improved:
 // 1. Used official WhatsApp SVG Path
 // 2. Matched size to AI Button (p-4)
@@ -359,11 +358,11 @@ const HomePage = () => {
   // -------------------------------------------------------------------------
   const heroImages = [
     "./banner1.png",
-    "./banner2.png",
+    "./banner5.png",
     "./banner3.avif",
     "./banner4.avif",
-    "./banner5.png",
-    "./banner6.png"
+    "./banner2.png",
+    "./banner6.png",
   ];
 
   // -------------------------------------------------------------------------
@@ -635,7 +634,7 @@ const AboutPage = () => {
           <h2 className="text-3xl font-bold text-center mb-12">Why Retailers Choose Us</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { icon: <Users size={32} />, title: "Network", desc: "Trusted by 500+ Optical Shops" },
+              { icon: <Users size={32} />, title: "Network", desc: "Trusted by 50+ Optical Shops" },
               { icon: <Award size={32} />, title: "Quality", desc: "QC Checked Products Only" },
               { icon: <HelpCircle size={32} />, title: "Support", desc: "Dedicated Account Managers" },
             ].map((item, i) => (
