@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import { StoreProvider, useStore, calculateDynamicPrice } from './context/StoreContext';
-import { AiAssistant } from './components/AiAssistant';
 import { COMPANY_PHONE, COMPANY_EMAIL, PRODUCTS, BLOG_POSTS, WEB3FORMS_ACCESS_KEY } from './constants';
 import { 
   Phone, Mail, Menu, X, ShoppingCart, User as UserIcon, LogOut, 
@@ -279,7 +278,7 @@ const ModalEnquiry = () => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in">
+    <div className="fixed inset-0 z-[60] flex items-start sm:items-center justify-center bg-black/60 backdrop-blur-sm pt-20 sm:pt-4 px-4 pb-4 animate-fade-in">
       <div className="bg-white rounded-xl shadow-2xl p-6 w-full max-w-md relative border border-gray-200">
         <button onClick={() => setIsOpen(false)} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
           <X size={20} />
@@ -294,7 +293,7 @@ const ModalEnquiry = () => {
         ) : (
           <>
             <h2 className="text-2xl font-bold mb-2">Get Wholesale Rates</h2>
-            <p className="text-gray-500 mb-6 text-sm">Join 500+ retailers. Request our latest catalog.</p>
+            <p className="text-gray-500 mb-6 text-sm">Join 50+ retailers. Request our latest catalog.</p>
             <form onSubmit={handleSubmit} className="space-y-4">
               <input name="name" required placeholder="Your Name" className="w-full border border-gray-300 rounded-lg px-4 py-2 bg-white focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" />
               <input name="email" type="email" required placeholder="Email Address" className="w-full border border-gray-300 rounded-lg px-4 py-2 bg-white focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" />
@@ -335,7 +334,7 @@ const WhatsAppButton = () => (
       href="https://wa.me/918860022021"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 left-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#20bd5a] transition-all flex items-center justify-center animate-whatsapp-ring border-2 border-white"
+      className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#20bd5a] transition-all flex items-center justify-center animate-whatsapp-ring border-2 border-white"
       aria-label="Chat on WhatsApp"
     >
       {/* Official WhatsApp Logo SVG */}
@@ -372,7 +371,7 @@ const HomePage = () => {
   // Enter the exact IDs of the 3 products you want to show on the home page.
   // Look at constants.ts for available IDs.
   // -------------------------------------------------------------------------
-  const trendingProductIds = ['p1', 'p3', 'p6']; 
+  const trendingProductIds = ['p21', 'p32', 'p46']; 
 
   const trendingProducts = PRODUCTS.filter(p => trendingProductIds.includes(p.id));
 
@@ -465,7 +464,7 @@ const HomePage = () => {
             <h2 className="text-3xl font-bold mb-12 text-center text-primary">Featured Collections</h2>
             <div className="grid md:grid-cols-2 gap-6">
               <div onClick={() => navigate('/products')} className="group relative h-72 md:h-96 rounded-2xl overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl transition-all">
-                <img src="./image1.png" alt="Frames" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src="image1.png" alt="Frames" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8 md:p-12">
                   <span className="bg-secondary text-white text-xs font-bold px-3 py-1 rounded w-fit mb-3">Best Sellers</span>
                   <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">Premium Acetate Frames</h3>
@@ -473,7 +472,7 @@ const HomePage = () => {
                 </div>
               </div>
               <div onClick={() => navigate('/products')} className="group relative h-72 md:h-96 rounded-2xl overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl transition-all">
-                <img src="./image2.avif" alt="Goggles" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src="image2.avif" alt="Goggles" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8 md:p-12">
                   <span className="bg-accent text-primary text-xs font-bold px-3 py-1 rounded w-fit mb-3">New Arrivals</span>
                   <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">Polarized Goggles</h3>
@@ -557,26 +556,37 @@ const HomePage = () => {
       <section className="py-20 bg-primary text-white">
         <div className="container mx-auto px-4">
           <RevealOnScroll>
-            <div className="bg-secondary/10 rounded-3xl p-8 md:p-16 border border-white/10 flex flex-col md:flex-row items-center gap-12 text-center md:text-left">
-              <div className="flex-1 space-y-6">
-                <h2 className="text-3xl md:text-4xl font-bold leading-tight">Join the <span className="text-secondary">Apna Vision</span> Family</h2>
-                <p className="text-gray-300 text-lg leading-relaxed">
-                  "I saw the operational hurdles faced by local opticians and knew technology could solve them. Apna Vision is the result—a streamlined B2B platform engineered to empower retailers."
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold leading-tight">Meet the <span className="text-secondary">Co-Founders</span></h2>
+              <p className="text-gray-400 mt-4 max-w-2xl mx-auto">The visionaries dedicated to revolutionizing India's optical wholesale market.</p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-10 items-start max-w-4xl mx-auto">
+              {/* Atif Khan Profile */}
+              <div className="bg-secondary/10 rounded-2xl p-8 border border-white/10 text-center flex flex-col items-center">
+                <div className="w-24 h-24 bg-gray-700 rounded-full mb-4 border-4 border-secondary flex items-center justify-center text-3xl font-bold">AK</div>
+                <h3 className="text-xl font-bold">Atif Khan</h3>
+                <p className="text-secondary font-medium mb-4">Co-Founder</p>
+                <p className="text-gray-300 text-sm italic">
+                  "Technology can solve the core operational hurdles for local opticians. Apna Vision is that solution—a streamlined platform to empower retailers."
                 </p>
-                <div>
-                  <h4 className="font-bold text-xl">Atif Khan</h4>
-                  <p className="text-secondary font-medium">CTO of Apna vision</p>
-                  <p className="text-gray-400 text-sm">(Chief Technology Officer)</p>
-                </div>
               </div>
-              <div className="flex-shrink-0">
-                {!user && (
-                  <button onClick={() => navigate('/auth')} className="bg-white text-primary px-10 py-4 rounded-full font-bold hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 text-lg">
-                    Register Your Shop
-                  </button>
-                )}
+              {/* Ayan Khan Profile */}
+              <div className="bg-secondary/10 rounded-2xl p-8 border border-white/10 text-center flex flex-col items-center">
+                 <div className="w-24 h-24 bg-gray-700 rounded-full mb-4 border-4 border-secondary flex items-center justify-center text-3xl font-bold">AY</div>
+                <h3 className="text-xl font-bold">Ayan Khan</h3>
+                <p className="text-secondary font-medium mb-4">Co-Founder</p>
+                <p className="text-gray-300 text-sm italic">
+                  "Our goal is to build lasting relationships based on trust and transparency, ensuring every retailer has access to quality products at fair prices."
+                </p>
               </div>
             </div>
+             {!user && (
+               <div className="text-center mt-12">
+                <button onClick={() => navigate('/auth')} className="bg-white text-primary px-10 py-4 rounded-full font-bold hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 text-lg">
+                  Register Your Shop
+                </button>
+               </div>
+            )}
           </RevealOnScroll>
         </div>
       </section>
@@ -639,18 +649,27 @@ const AboutPage = () => {
         </RevealOnScroll>
 
         <RevealOnScroll>
-          <div className="bg-gray-900 text-white rounded-3xl p-12 text-center">
-            <h2 className="text-3xl font-bold mb-8">Leadership at Apna Vision</h2>
-            <div className="max-w-3xl mx-auto">
-              <div className="w-24 h-24 bg-gray-700 rounded-full mx-auto mb-6 overflow-hidden border-4 border-secondary">
-                 <div className="w-full h-full flex items-center justify-center text-3xl font-bold">AK</div>
+          <div className="text-center">
+            <h2 className="text-3xl font-bold mb-12">Leadership at Apna Vision</h2>
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {/* Atif Khan Card */}
+              <div className="bg-gray-50 rounded-2xl p-8 border hover:shadow-xl transition-all">
+                <div className="w-24 h-24 bg-gray-700 text-white rounded-full mx-auto mb-6 flex items-center justify-center text-3xl font-bold border-4 border-secondary">AK</div>
+                <h3 className="text-2xl font-bold mb-1">Atif Khan</h3>
+                <p className="text-secondary font-semibold">Co-Founder</p>
+                <p className="text-gray-500 text-sm mt-4 italic">
+                  "Technology can solve the core operational hurdles for local opticians. Apna Vision is that solution—a streamlined platform to empower retailers."
+                </p>
               </div>
-              <h3 className="text-2xl font-bold mb-2">Atif Khan</h3>
-              <p className="text-secondary font-medium">CTO of Apna vision</p>
-              <p className="text-gray-400 text-sm mb-6">(Chief Technology Officer)</p>
-              <p className="text-gray-400 italic">
-                "I saw the operational hurdles faced by local opticians and knew technology could solve them. Apna Vision is the result—a streamlined B2B platform engineered to empower retailers."
-              </p>
+              {/* Ayan Khan Card */}
+              <div className="bg-gray-50 rounded-2xl p-8 border hover:shadow-xl transition-all">
+                <div className="w-24 h-24 bg-gray-700 text-white rounded-full mx-auto mb-6 flex items-center justify-center text-3xl font-bold border-4 border-secondary">AY</div>
+                <h3 className="text-2xl font-bold mb-1">Ayan Khan</h3>
+                <p className="text-secondary font-semibold">Co-Founder</p>
+                <p className="text-gray-500 text-sm mt-4 italic">
+                  "Our goal is to build lasting relationships based on trust and transparency, ensuring every retailer has access to quality products at fair prices."
+                </p>
+              </div>
             </div>
           </div>
         </RevealOnScroll>
@@ -692,11 +711,11 @@ const ProductsPage = () => {
   // Define your ranges here. Use 'Infinity' for the last range's max value.
   // -------------------------------------------------------------------------
   const PRICE_RANGES = [
-    { id: 'r1', label: 'Under ₹400', min: 0, max: 399 },
-    { id: 'r2', label: '₹400 - ₹599', min: 400, max: 599 },
-    { id: 'r3', label: '₹600 - ₹799', min: 600, max: 799 },
-    { id: 'r4', label: '₹800 - ₹999', min: 800, max: 999 },
-    { id: 'r5', label: 'Above ₹1000', min: 1000, max: Infinity },
+    { id: 'r1', label: 'Under ₹100', min: 0, max: 99 },
+    { id: 'r2', label: '₹100 - ₹200', min: 100, max: 199 },
+    { id: 'r3', label: '₹200 - ₹300', min: 200, max: 299 },
+    { id: 'r4', label: '₹300 - ₹400', min: 300, max: 399 },
+    { id: 'r5', label: 'Above ₹400', min: 400, max: Infinity },
   ];
 
   useEffect(() => {
@@ -1251,7 +1270,7 @@ const BlogPage = () => {
         </div>
       </div>
       {selectedPost && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 transition-all duration-300">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 transition-all duration-300">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative animate-fade-in flex flex-col">
             <button onClick={() => setSelectedPost(null)} className="absolute top-4 right-4 z-10 bg-white/20 backdrop-blur-md hover:bg-white text-white hover:text-red-500 rounded-full p-2 transition-all shadow-lg border border-white/30"><X size={24} /></button>
             <div className="h-64 sm:h-80 w-full shrink-0 relative"><img src={selectedPost.image} alt={selectedPost.title} className="w-full h-full object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div><div className="absolute bottom-0 left-0 p-6 sm:p-8 text-white w-full"><span className="bg-secondary px-3 py-1 rounded text-xs font-bold uppercase mb-2 inline-block shadow-sm">{selectedPost.date}</span><h2 className="text-2xl sm:text-3xl font-bold leading-tight drop-shadow-md">{selectedPost.title}</h2></div></div>
@@ -1364,7 +1383,7 @@ const App = () => {
               <Route path="/admin" element={<AdminPage />} />
             </Routes>
           </main>
-          <AiAssistant />
+          {/* AI Assistant Removed */}
           <WhatsAppButton />
           <Footer />
         </div>
