@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { StoreProvider, useStore, calculateDynamicPrice } from './context/StoreContext';
+import { SEO } from './components/SEO';
 import { COMPANY_PHONE, COMPANY_EMAIL, PRODUCTS, BLOG_POSTS, WEB3FORMS_ACCESS_KEY } from './constants';
 import { 
   Phone, Mail, Menu, X, ShoppingCart, User as UserIcon, LogOut, 
@@ -386,6 +388,11 @@ const HomePage = () => {
 
   return (
     <div className="overflow-hidden bg-white">
+      <SEO 
+        title="Home" 
+        description="Apna Vision - India's #1 B2B Optical Marketplace. Wholesale frames, goggles, and lenses at factory prices. Founded by Atif & Ayan Khan."
+        canonical="https://apnavision.in/"
+      />
       <ModalEnquiry />
       
       <section className="relative h-[600px] lg:h-[700px] overflow-hidden flex items-center justify-center bg-black">
@@ -596,6 +603,11 @@ const HomePage = () => {
 const AboutPage = () => {
   return (
     <div className="bg-white min-h-screen animate-fade-in">
+      <SEO 
+        title="About Us" 
+        description="Learn about Apna Vision, India's leading B2B optical platform founded by Atif Khan and Ayan Khan. We connect retailers directly to manufacturers."
+        canonical="https://apnavision.in/about"
+      />
       <div className="bg-primary text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <RevealOnScroll>
@@ -777,6 +789,11 @@ const ProductsPage = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen py-8">
+      <SEO 
+        title="Wholesale Catalog" 
+        description="Browse our extensive collection of wholesale frames, goggles, and optical accessories. Best prices for retailers in India."
+        canonical="https://apnavision.in/products"
+      />
       <div className="container mx-auto px-4">
         
         <div className="bg-gradient-to-r from-blue-50 to-white border-l-4 border-secondary p-6 mb-8 rounded-r-xl shadow-sm animate-fade-in flex flex-col md:flex-row items-center gap-4 justify-between">
@@ -1073,6 +1090,7 @@ const CartPage = () => {
 
   if (cart.length === 0) return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4">
+      <SEO title="My Cart" description="Review your wholesale order and checkout." />
       <div className="bg-white p-12 rounded-2xl shadow-sm border text-center">
         <ShoppingCart size={64} className="text-gray-200 mx-auto mb-6" />
         <h2 className="text-2xl font-bold text-gray-700 mb-2">Your cart is empty</h2>
@@ -1084,6 +1102,7 @@ const CartPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-12 animate-fade-in relative">
+      <SEO title="Checkout" description="Complete your bulk order with Cash on Delivery (COD)." />
       {showLocationModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in">
            <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-sm text-center relative">
@@ -1216,6 +1235,7 @@ const AuthPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <SEO title={isLogin ? "Retailer Login" : "Register Shop"} description="Access exclusive wholesale prices for eyewear retailers. Login or create an account." />
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-8 animate-fade-in border border-gray-200">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-primary">{isLogin ? 'Retailer Login' : 'Register Shop'}</h2>
@@ -1245,6 +1265,7 @@ const BlogPage = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen py-16">
+      <SEO title="Blog & Insights" description="Latest trends in the optical industry, business tips for retailers, and updates from Apna Vision." />
       <div className="container mx-auto px-4">
         <RevealOnScroll>
           <div className="text-center mb-16">
@@ -1270,6 +1291,7 @@ const BlogPage = () => {
       </div>
       {selectedPost && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 transition-all duration-300">
+          <SEO title={selectedPost.title} description={selectedPost.excerpt} type="article" image={selectedPost.image} />
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative animate-fade-in flex flex-col">
             <button onClick={() => setSelectedPost(null)} className="absolute top-4 right-4 z-10 bg-white/20 backdrop-blur-md hover:bg-white text-white hover:text-red-500 rounded-full p-2 transition-all shadow-lg border border-white/30"><X size={24} /></button>
             <div className="h-64 sm:h-80 w-full shrink-0 relative"><img src={selectedPost.image} alt={selectedPost.title} className="w-full h-full object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div><div className="absolute bottom-0 left-0 p-6 sm:p-8 text-white w-full"><span className="bg-secondary px-3 py-1 rounded text-xs font-bold uppercase mb-2 inline-block shadow-sm">{selectedPost.date}</span><h2 className="text-2xl sm:text-3xl font-bold leading-tight drop-shadow-md">{selectedPost.title}</h2></div></div>
@@ -1287,6 +1309,11 @@ const BlogPage = () => {
 const ContactPage = () => {
   return (
     <div className="bg-white min-h-screen py-12 animate-fade-in">
+      <SEO 
+        title="Contact Us" 
+        description="Get in touch with Apna Vision for wholesale inquiries. Located in Central Market, Lajpat Nagar, Delhi. Call us for bulk orders."
+        canonical="https://apnavision.in/contact"
+      />
       <div className="container mx-auto px-4">
         <RevealOnScroll>
           <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
@@ -1324,6 +1351,7 @@ const AdminPage = () => {
   
   if (!user || user.role !== 'admin') return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <SEO title="Admin Login" description="Restricted access for Apna Vision administrators." />
       <div className="bg-white p-8 rounded shadow text-center">
         <h2 className="text-red-500 font-bold text-xl mb-2">Access Denied</h2>
         <p className="text-gray-600">You do not have permission to view this page.</p>
@@ -1334,6 +1362,7 @@ const AdminPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 animate-fade-in bg-gray-50 min-h-screen">
+      <SEO title="Admin Dashboard" description="Manage orders and enquiries." />
       <h1 className="text-3xl font-bold mb-8 text-primary">Admin Dashboard</h1>
       <div className="grid lg:grid-cols-2 gap-8">
         <div className="bg-white rounded-xl shadow-sm border p-6">
@@ -1366,27 +1395,29 @@ const AdminPage = () => {
 const App = () => {
   return (
     <Router>
-      <ScrollToTop />
-      <StoreProvider>
-        <div className="flex flex-col min-h-screen font-sans text-gray-900">
-          <Header />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/products" element={<ProductsPage />} />
-              <Route path="/cart" element={<CartPage />} />
-              <Route path="/auth" element={<AuthPage />} />
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/admin" element={<AdminPage />} />
-            </Routes>
-          </main>
-          {/* AI Assistant Removed */}
-          <WhatsAppButton />
-          <Footer />
-        </div>
-      </StoreProvider>
+      <HelmetProvider>
+        <ScrollToTop />
+        <StoreProvider>
+          <div className="flex flex-col min-h-screen font-sans text-gray-900">
+            <Header />
+            <main className="flex-grow">
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/products" element={<ProductsPage />} />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/auth" element={<AuthPage />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/admin" element={<AdminPage />} />
+              </Routes>
+            </main>
+            {/* AI Assistant Removed */}
+            <WhatsAppButton />
+            <Footer />
+          </div>
+        </StoreProvider>
+      </HelmetProvider>
     </Router>
   );
 };
