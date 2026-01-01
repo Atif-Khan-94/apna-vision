@@ -1311,7 +1311,7 @@ const ContactPage = () => {
     <div className="bg-white min-h-screen py-12 animate-fade-in">
       <SEO 
         title="Contact Us" 
-        description="Get in touch with Apna Vision for wholesale inquiries. Located in Central Market, Lajpat Nagar, Delhi. Call us for bulk orders."
+        description="Get in touch with Apna Vision for wholesale inquiries. Located in Fatehpuri Market,Chandni Chowk, Delhi. Call us for bulk orders."
         canonical="https://apnavision.in/contact"
       />
       <div className="container mx-auto px-4">
@@ -1327,7 +1327,7 @@ const ContactPage = () => {
                   <div className="flex items-start gap-4"><div className="bg-white/10 p-3 rounded-lg"><MapPin className="text-secondary" /></div><div><h4 className="font-bold text-lg">Head Office</h4><p className="text-gray-300">Central Market, Lajpat Nagar<br/>New Delhi, India</p></div></div>
                 </div>
               </div>
-              <div className="mt-12 relative z-10"><p className="text-xs text-gray-400">Operating Hours: Mon-Sat, 10 AM - 7 PM</p></div>
+              <div className="mt-12 relative z-10"><p className="text-xs text-gray-400">Operating Hours: 24/7</p></div>
             </div>
             <div className="p-10 md:w-3/5 bg-gray-50">
               <h3 className="text-2xl font-bold mb-6 text-gray-800">Send us a message</h3>
