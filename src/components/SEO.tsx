@@ -15,7 +15,7 @@ export const SEO: React.FC<SEOProps> = ({
   title, 
   description, 
   keywords = "wholesale optical, eyewear b2b, frames india, goggles bulk, atif khan, ayan khan, apna vision", 
-  canonical = "https://apnavision.in",
+  canonical = "https://apnavisionco.in",
   type = 'website',
   image = "https://images.unsplash.com/photo-1577744062666-4e924d5b784a?q=80&w=2070" 
 }) => {
